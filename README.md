@@ -85,6 +85,8 @@ curl "http://localhost:8080/objects?collection=users&limit=50&offset=0"
 
 # فیلتر پیشوندی (مثلاً کلیدهایی که با user: شروع می‌شوند)
 curl "http://localhost:8080/objects?prefix=user:&limit=200&includeCollection=true"
+# گرفتن یک محصول خاص
+curl.exe "http://localhost:8080/objects/p:1001?collection=products"
 ```
 
 ---
@@ -112,6 +114,10 @@ docker run --rm -p 8080:8080 -e DATA_DIR=/data -v "%cd%\data:/data" kvstore:opt
 curl -i "http://localhost:8080/objects?limit=1"
 curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/json" \
   --data '{"key":"user:1234","value":{"name":"Amin Alavli","age":23,"email":"a.alavi@fum.ir"}}'
+```
+```bash
+curl.exe -X PUT "http://localhost:8080/objects?collection=products" -H "Content-Type: application/json"
+--data "{\"key\":\"p:1001\",\"value\":{\"title\":\"Keyboard\",\"price\":39.9,\"stock\":15,\"tags\":[\"peripheral\",\"wired\"]}}"
 ```
 
 ---
@@ -145,9 +151,15 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 
 
 ## 7) اندازهٔ ایمیج و بهینه‌سازی
-- **Dockerfile چندمرحله‌ای**: مرحلهٔ build روی `golang:1.22-alpine` و مرحلهٔ اجرا روی `distroless:nonroot`
-- باینری **استاتیک** با `CGO_ENABLED=0` و `-ldflags "-s -w"` → ایمیج نهایی کوچک و امن
-- اجرای **nonroot** و بدون شل (surface attack کم‌تر)
+Dockerfile چندمرحله‌ای: مرحلهٔ build روی golang:1.22-alpine و مرحلهٔ نهایی روی scratch برای کمینه‌کردن سایز.
+
+باینری استاتیک و کم‌حجم: با CGO_ENABLED=0, GOOS=linux, GOARCH=amd64 و -trimpath -ldflags "-s -w" کامپایل می‌شود.
+
+اجرای امن (nonroot) و بدون شِل: در stage نهایی USER 65532:65532 استفاده شده و چون base scratch است، شِل یا ابزار اضافی وجود ندارد (surface کوچک‌تر).
+
+پیکربندی سادهٔ اجرا: متغیرها APP_ADDR=:8080 و DATA_DIR=/app/data؛ پورت سرویس EXPOSE 8080.
+
+ماندگاری داده: توصیه به mount کردن مسیر داده در زمان اجرا: -v %cd%/data:/app/data (یا معادل لینوکسی).
 
 برای نمایش سایز ایمیج:
 ```bash
