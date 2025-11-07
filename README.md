@@ -127,15 +127,15 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 - **Response**: `HTTP/1.1 200 OK` (بدنهٔ پیش‌فرض ساده: `{"status":"ok"}`)
 
 ### GET `/objects/{key}`
-- **Query**: `collection=<name>` اختیاری (اگر در کالکشنی ذخیره کرده‌اید، همان را بدهید)
+- **Query**: `collection=<name>` اختیاری (اگر در کالکشنی ذخیره کرده باشیم همان را می دهیم)
 - **Response**:
   - موجود: `200 OK` + مقدار JSON خام
   - ناموجود: `404 Not Found`
 
 ### GET `/objects`
 - **Query**:
-  - `collection=<name>` (اختیاری؛ اگر ندهید همهٔ کالکشن‌ها لیست می‌شوند)
-  - `limit` (۱..۱۰۰۰۰، پیش‌فرض ۱۰۰) و `offset` (≥۰)
+  - `collection=<name>` (اختیاری؛ اگر ندهیم همهٔ کالکشن‌ها لیست می‌شوند)
+  - `limit` (۱..۱۰۰۰۰، پیش‌فرض ۱۰۰) و (`offset` ≥۰)
   - `prefix` برای فیلتر پیشوندی روی کلید
   - `includeCollection=true` برای نمایش نام کالکشن کنار هر آیتم
 - **Response**: آرایهٔ JSON به‌صورت **استریم** (حافظهٔ ثابت در مقیاس بزرگ)
@@ -151,5 +151,5 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 
 برای نمایش سایز ایمیج:
 ```bash
-docker images kvstore-file:opt
+docker images kvstore:opt
 ```
