@@ -142,23 +142,6 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 
 ---
 
-## 5) Optional Features (امتیازی) — چه کرده‌ایم؟
-- **Performance (small/large scale):**
-  - In-memory index برای `GET`‌ سریع
-  - Append-only JSONL برای write سریع
-  - **Streaming JSON** در `GET /objects` (بدون ساخت آرایهٔ بزرگ در حافظه)
-  - **Auto-Compaction**: وقتی فایل «باد» می‌کند، نسخهٔ فشردهٔ فقط-آخرین رکوردها ساخته و جایگزین می‌شود
-- **Collection**: گروهبندی منطقی با `?collection=...` (هر کالکشن یک فایل جدا)
-- **`GET /objects`**: پیاده‌سازی کامل با صفحه‌بندی، فیلتر `prefix` و سویچ `includeCollection`
-
----
-
-## 6) نکات مهم و تفاوت‌ها
-- اگر با `?collection=users` ذخیره کنید، در `GET /objects/{key}` هم باید همان `collection` را بدهید؛ در غیر این صورت 404 می‌گیرید.
-- برای لیست‌کردن **همهٔ کالکشن‌ها** پارامتر `collection` را حذف کنید (و برای شفافیت، `includeCollection=true` بگذارید).
-- **Status-Line** (مثل `HTTP/1.1 200 OK`) با `curl -i` نشان داده می‌شود؛ بدنهٔ موفقیت قابل تغییر است (می‌توانید فقط 200 بدون بدنه بدهید).
-
----
 
 
 ## 7) اندازهٔ ایمیج و بهینه‌سازی
@@ -170,5 +153,3 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 ```bash
 docker images kvstore-file:opt
 ```
-
----.
