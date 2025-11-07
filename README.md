@@ -156,16 +156,13 @@ curl.exe -X PUT "http://localhost:8080/objects?collection=products" -H "Content-
 
   مرحله build روی `golang:1.22-alpine`و مرحله نهایی روی `scratch` برای کمینه کردن سایز انجام میشود.
 
+- **بااینری استاتیک و کم‌حجم** 
 
+- **اجرای امن (nonroot) و بدون شِل**
+-
+ در stage نهایی `USER 65532:65532` استفاده شده و چون base scratch است، شِل یا ابزار اضافی وجود ندارد (surface کوچک‌تر).
 
-
-باینری استاتیک و کم‌حجم: با CGO_ENABLED=0, GOOS=linux, GOARCH=amd64 و -trimpath -ldflags "-s -w" کامپایل می‌شود.
-
-اجرای امن (nonroot) و بدون شِل: در stage نهایی USER 65532:65532 استفاده شده و چون base scratch است، شِل یا ابزار اضافی وجود ندارد (surface کوچک‌تر).
-
-پیکربندی سادهٔ اجرا: متغیرها APP_ADDR=:8080 و DATA_DIR=/app/data؛ پورت سرویس EXPOSE 8080.
-
-ماندگاری داده: توصیه به mount کردن مسیر داده در زمان اجرا: -v %cd%/data:/app/data (یا معادل لینوکسی).
+- **پیکربندی سادهٔ اجرا متغیرها** APP_ADDR=:8080 و DATA_DIR=/app/data؛ پورت سرویس EXPOSE 8080.
 
 برای نمایش سایز ایمیج:
 ```bash
