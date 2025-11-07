@@ -152,7 +152,8 @@ curl.exe -X PUT "http://localhost:8080/objects?collection=products" -H "Content-
 
 
 ## 7) اندازهٔ ایمیج و بهینه‌سازی
-- **Dockerfile چند مرحله ای** مرحله build روی `golang:1.22-alpine`و مرحله نهایی روی `scratch` برای کمینه کردن سایز انجام میشود.
+- **Dockerfile چند مرحله ای**
+  مرحله build روی `golang:1.22-alpine`و مرحله نهایی روی `scratch` برای کمینه کردن سایز انجام میشود.
 
 
 
