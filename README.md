@@ -35,9 +35,6 @@
 
 ### 2.1. اجرا
 ```bash
-# Linux/Mac
-export APP_ADDR=":8080"
-export DATA_DIR="./data"
 go run ./main.go
 
 # Windows - PowerShell
@@ -78,7 +75,7 @@ Content-Type: application/json
 curl -i "http://localhost:8080/objects/user:9999"
 ```
 
-- **لیست همهٔ اشیاء** (امتیازی):
+- **لیست همهٔ اشیاء** :
 ```bash
 # همهٔ کالکشن‌ها با نمایش نام کالکشن
 curl "http://localhost:8080/objects?limit=200&includeCollection=true"
@@ -92,7 +89,7 @@ curl "http://localhost:8080/objects?prefix=user:&limit=200&includeCollection=tru
 
 ---
 
-## 3) اجرای Docker (ایمیج کم‌حجم)
+## 3) اجرای Docker
 
 ### 3.1. ساخت ایمیج
 ```bash
@@ -101,9 +98,6 @@ docker build -t kvstore:opt .
 
 ### 3.2. اجرا با پایداری داده
 ```bash
-# Linux/Mac
-docker run --rm -p 8080:8080 -e DATA_DIR=/data -v "$PWD/data:/data" kvstore:opt
-
 # Windows - PowerShell
 docker run --rm -p 8080:8080 -e DATA_DIR=/data -v "${PWD}\data:/data" kvstore:opt
 
