@@ -1,4 +1,3 @@
-<img width="975" height="227" alt="image" src="https://github.com/user-attachments/assets/2798350c-d724-4323-aa0f-c8a253b667ba" />
 # KVStore — تمرین دوم سیستم‌های توزیع‌شده 
 
 این پروژه طراحی و پیاده‌سازی یک پایگاه داده **Key–Value Store** است که با زبان **Golang** نوشته شده. داده‌ها در فایل‌های `JSONL` ذخیره می‌شوند که بتوان بعد از ری‌استارت کردن داده ها باقی بمانند.
