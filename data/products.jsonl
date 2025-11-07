@@ -1,0 +1,8 @@
+{"collection":"products","key":"p:1001","value":{"title":"Keyboard","price":39.9,"stock":15,"tags":["peripheral","wired"]},"ts":"2025-11-06T16:57:07.9599333Z","tombstone":false}
+{"collection":"products","key":"p:1005","value":{"title":"mouse wireless","price":8.9,"stock":50,"tags":["mouse","wireless"]},"ts":"2025-11-07T10:16:56.22921992Z","tombstone":false}
+{"collection":"products","key":"p:1002","value":{"title":"Wireless Mouse","price":24.5,"stock":40,"tags":["peripheral","wireless"]},"ts":"2025-11-07T10:20:10.515942857Z","tombstone":false}
+{"collection":"products","key":"p:1003","value":{"title":"Monitor 24","price":129.0,"stock":8,"tags":["display","24inch","1080p"]},"ts":"2025-11-07T10:20:21.913467739Z","tombstone":false}
+{"collection":"products","key":"p:1004","value":{"title":"USB-C Cable","price":5.9,"stock":100,"tags":["cable","usb-c"]},"ts":"2025-11-07T10:20:31.959796339Z","tombstone":false}
+{"collection":"products","key":"p:1005","value":{"title":"flash 64 Gig","price":5.5,"stock":10,"tags":["cable","flash"]},"ts":"2025-11-07T13:00:33.277736326Z","tombstone":false}
+{"collection":"products","key":"p:1006","value":{"title":"mouse wireless ","price":7.8,"stock":50,"tags":["mouse"," wireless "]},"ts":"2025-11-07T13:02:18.51947732Z","tombstone":false}
+{"collection":"products","key":"p:1006","value":{"title":"mouse wireless","price":7.8,"stock":50,"tags":["mouse"," wireless "]},"ts":"2025-11-07T13:02:37.112035705Z","tombstone":false}
