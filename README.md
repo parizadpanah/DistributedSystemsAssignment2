@@ -85,6 +85,7 @@ curl "http://localhost:8080/objects?collection=users&limit=50&offset=0"
 
 # فیلتر پیشوندی (مثلاً کلیدهایی که با user: شروع می‌شوند)
 curl "http://localhost:8080/objects?prefix=user:&limit=200&includeCollection=true"
+
 # گرفتن یک محصول خاص
 curl.exe "http://localhost:8080/objects/p:1001?collection=products"
 ```
@@ -151,7 +152,10 @@ curl.exe -X PUT "http://localhost:8080/objects?collection=products" -H "Content-
 
 
 ## 7) اندازهٔ ایمیج و بهینه‌سازی
-Dockerfile چندمرحله‌ای: مرحلهٔ build روی golang:1.22-alpine و مرحلهٔ نهایی روی scratch برای کمینه‌کردن سایز.
+-**Dockerfile چند مرحله ای**مرحله build روی `golang:1.22-alpine`و مرحله نهایی روی `scratch` برای کمینه کردن سایز انجام میشود.
+
+
+
 
 باینری استاتیک و کم‌حجم: با CGO_ENABLED=0, GOOS=linux, GOARCH=amd64 و -trimpath -ldflags "-s -w" کامپایل می‌شود.
 
