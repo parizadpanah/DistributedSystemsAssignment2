@@ -160,15 +160,8 @@ curl -i -X PUT "http://localhost:8080/objects" -H "Content-Type: application/jso
 
 ---
 
-## 7) اسکریپت‌های کمکی (اختیاری)
-- **Seed محصولات** در کالکشن `products`: فایل `seed_products.ps1` چند نمونه محصول `p:1001..p:1004` اضافه می‌کند و لیست می‌گیرد:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\seed_products.ps1 -Base "http://localhost:8080"
-```
 
----
-
-## 8) اندازهٔ ایمیج و بهینه‌سازی
+## 7) اندازهٔ ایمیج و بهینه‌سازی
 - **Dockerfile چندمرحله‌ای**: مرحلهٔ build روی `golang:1.22-alpine` و مرحلهٔ اجرا روی `distroless:nonroot`
 - باینری **استاتیک** با `CGO_ENABLED=0` و `-ldflags "-s -w"` → ایمیج نهایی کوچک و امن
 - اجرای **nonroot** و بدون شل (surface attack کم‌تر)
@@ -178,29 +171,4 @@ powershell -ExecutionPolicy Bypass -File .\seed_products.ps1 -Base "http://local
 docker images kvstore-file:opt
 ```
 
----
-
-## 9) چک‌لیست تحویل (مطابق جزوه)
-- [x] سورس Go تمیز و مستندسازی‌شده
-- [x] فایل **README** با روش اجرا و مثال‌های درخواست/پاسخ
-- [x] **Dockerized** با ایمیج کم‌حجم
-- [x] **Persistence** (داده‌ها بعد از ری‌استارت باقی می‌مانند)
-- [x] سه مورد **اختیاری** (Performance، Collection، `GET /objects`)
-
----
-
-## 10) خطایابی سریع
-- `415 Unsupported Media Type` → هدر `Content-Type: application/json` را گذاشته‌اید؟
-- `404 Not Found` در GET-by-key → همان `collection` و همان `key` که ذخیره کردید را می‌خوانید؟
-- پورت اشغال است → `APP_ADDR=:9090` و `-p 9090:9090` را استفاده کنید.
-- مشاهدهٔ فایل داده:
-```powershell
-Get-Content .\data\default.jsonl -Tail 10
-Get-Content .\data\users.jsonl -Tail 10
-Get-Content .\data\products.jsonl -Tail 10
-```
-
----
-
-## 11) لایسنس
-این تمرین صرفاً برای اهداف آموزشی/دانشجویی است.
+---.
