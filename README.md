@@ -1,4 +1,4 @@
-
+<img width="975" height="227" alt="image" src="https://github.com/user-attachments/assets/2798350c-d724-4323-aa0f-c8a253b667ba" />
 # KVStore — تمرین دوم سیستم‌های توزیع‌شده 
 
 این پروژه طراحی و پیاده‌سازی یک پایگاه داده **Key–Value Store** است که با زبان **Golang** نوشته شده. داده‌ها در فایل‌های `JSONL` ذخیره می‌شوند که بتوان بعد از ری‌استارت کردن داده ها باقی بمانند.
@@ -162,7 +162,84 @@ curl.exe -X PUT "http://localhost:8080/objects?collection=products" -H "Content-
 
 **پیکربندی سادهٔ اجرا متغیرها**:APP_ADDR=:8080 و DATA_DIR=/app/data؛ پورت سرویس EXPOSE 8080.
 
-برای نمایش سایز ایمیج:
+> برای نمایش سایز ایمیج:
 ```bash
 docker images kvstore:opt
+```
+---
+## 8) نمونه های تست شده
+
+نمونه اول:
+```bash
+curl "http://localhost:8080/objects"
+```
+خروجی نمونه:
+```
+[
+  {"key":"user:1234","value":{"name":"Amin Alavli","age":23,"email":"a.alavi@fum.ir"}},
+  {"key":"p:1001","value":{"title":"Keyboard","price":39.9,"stock":15,"tags":["peripheral","wired"]}},
+  {"key":"p:1002","value":{"title":"Wireless Mouse","price":24.5,"stock":40,"tags":["peripheral","wireless"]}},
+  {"key":"p:1003","value":{"title":"Monitor 24","price":129.0,"stock":8,"tags":["display","24inch","1080p"]}},
+  {"key":"p:1004","value":{"title":"USB-C Cable","price":5.9,"stock":100,"tags":["cable","usb-c"]}},
+  {"key":"p:1005","value":{"title":"mouse wireless","price":8.9,"stock":50,"tags":["mouse","wireless"]}},
+  {"key":"u:1","value":{"name":"Sara","age":21}},
+  {"key":"u:2","value":{"name":"Amin","age":25}},
+  {"key":"u:3","value":{"name":"Reza"}}
+]
+```
+نمونه دوم:
+```bash
+curl "http://localhost:8080/objects?collection=products"
+```
+خروجی نمونه:
+```
+[
+  {"key":"p:1001","value":{"title":"Keyboard","price":39.9,"stock":15,"tags":["peripheral","wired"]}},
+  {"key":"p:1002","value":{"title":"Wireless Mouse","price":24.5,"stock":40,"tags":["peripheral","wireless"]}},
+  {"key":"p:1003","value":{"title":"Monitor 24","price":129.0,"stock":8,"tags":["display","24inch","1080p"]}},
+  {"key":"p:1004","value":{"title":"USB-C Cable","price":5.9,"stock":100,"tags":["cable","usb-c"]}},
+  {"key":"p:1005","value":{"title":"mouse wireless","price":8.9,"stock":50,"tags":["mouse","wireless"]}}
+]
+```
+نمونه سوم:
+```bash
+curl -i "http://localhost:8080/objects/user:1234"
+```
+خروجی نمونه:
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 07 Nov 2025 11:13:17 GMT
+Content-Length: 56
+
+{"name":"Amin Alavli","age":23,"email":"a.alavi@fum.ir"}
+```
+نمونه چهارم:
+```bash
+curl -i -X PUT "http://localhost:8080/objects?collection=users" ^
+  -H "Content-Type: application/json" ^
+  -d "{\"key\":\"user:ali\",\"value\":{\"name\":\"Ali\",\"age\":22}}"
+```
+خروجی نمونه:
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 07 Nov 2025 11:19:45 GMT
+Content-Length: 15
+
+{"status":"ok"}
+```
+نمونه پنجم:
+```bash
+curl -i "http://localhost:8080/objects/user:12"
+```
+خروجی نمونه:
+```
+HTTP/1.1 404 Not Found
+Content-Type: text/plain; charset=utf-8
+X-Content-Type-Options: nosniff
+Date: Fri, 07 Nov 2025 15:18:12 GMT
+Content-Length: 19
+
+404 page not found
 ```
